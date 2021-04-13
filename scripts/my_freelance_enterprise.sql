@@ -25,11 +25,10 @@ CREATE TABLE IF NOT EXISTS `bill` (
   `creation_date` datetime NOT NULL,
   `settlement_date` datetime DEFAULT NULL,
   `client` int(11) DEFAULT NULL,
-  `step` int(11) DEFAULT NULL,
+  `step` varchar(15) CHARACTER SET utf8 DEFAULT NULL,
   `tva` double DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `bill_client__fk` (`client`),
-  KEY `bill_step__fk` (`step`)
+  KEY `bill_client__fk` (`client`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
@@ -37,9 +36,9 @@ CREATE TABLE IF NOT EXISTS `bill` (
 --
 
 INSERT INTO `bill` (`id`, `amount`, `creation_date`, `settlement_date`, `client`, `step`, `tva`) VALUES
-(1, 10000, '2021-01-08 13:01:41', '2021-04-01 08:02:01', 3, 2, 20),
-(2, 1500, '2021-02-12 08:00:00', NULL, 1, 1, 20),
-(3, 2000, '2021-03-13 13:04:13', NULL, 2, 1, 20);
+(1, 10000, '2021-01-08 13:01:41', '2021-04-01 08:02:01', 3, 'DONE', 20),
+(2, 1500, '2021-02-12 08:00:00', NULL, 1, 'WAITING', 20),
+(3, 2000, '2021-03-13 13:04:13', NULL, 2, 'WAITING', 20);
 
 -- --------------------------------------------------------
 
@@ -65,30 +64,7 @@ INSERT INTO `client` (`id`, `name`, `phone_number`, `address`, `active`) VALUES
 (1, 'CESI Nantes', '+33244965845', '5 Avenue Lorem Impsume 44000 Nantes', 1),
 (2, 'ENI Nantes', '+33259864217', '14 rue Ampères 44370 Saint-Herbalin', 1),
 (3, 'TESLA France', '+33151487596', '14 Avenue des Champs Elysée 75007 Paris', 1),
-(4, 'Hachette Livres', '+33125389741', '18 Rue de l\'arrivée 75015 Paris', 0);
-
--- --------------------------------------------------------
-
---
--- Structure de la table `step`
---
-
-DROP TABLE IF EXISTS `step`;
-CREATE TABLE IF NOT EXISTS `step` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `libelle` varchar(50) CHARACTER SET utf8 NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `step_id_index` (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `step`
---
-
-INSERT INTO `step` (`id`, `libelle`) VALUES
-(1, 'En attente'),
-(2, 'Payée'),
-(3, 'Abandonnée');
+(4, 'Hachette Livres', '+33125389741', '18 Rue du départ 75014 Paris', 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
