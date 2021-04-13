@@ -1,11 +1,26 @@
 package fr.cesi.myFreelanceEntreprise.beans;
 
 public class Client {
+    private boolean active;
+
     private int id;
 
     private String address;
     private String name;
     private String phoneNumber;
+
+
+    public boolean isActive() {
+        return this.active;
+    }
+
+    public boolean getActive() {
+        return this.active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 
     public int getId() {
         return this.id;
