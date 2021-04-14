@@ -18,5 +18,5 @@ public class ClientService {
         return c.orElse(null);
     }
 
-    public void insert(Client c){ clientDAO.save(c);}
+    public void save(Client c){ clientDAO.save(c);}
 }

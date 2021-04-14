@@ -18,6 +18,6 @@ public class BillService {
         return b.orElse(null);
     }
 
-    public void insert(Bill b) { billDAO.save(b);}
+    public void save(Bill b) { billDAO.save(b);}
 
 }

@@ -1,20 +1,22 @@
 package fr.cesi.myFreelanceEntreprise.beans;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class Bill {
-    private Client client;
+@Entity
+public class Bill implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
     private int idClient;
-
+    @ManyToOne
+    private Client client;
     private float amount;
-
     private Timestamp creationDate;
     private Timestamp settlementDate;
-
     private Step step;
-
     private Vat vat;
 
     public Client getClient() {
