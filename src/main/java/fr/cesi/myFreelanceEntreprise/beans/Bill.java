@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Entity
-public class Bill implements Serializable {
+public class Bill implements Serializable, Comparable<Bill> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -81,5 +81,13 @@ public class Bill implements Serializable {
 
     public void setVat(Vat vat) {
         this.vat = vat;
+    }
+
+    @Override
+    public int compareTo(Bill b) {
+        if (getCreationDate() == null || b.getCreationDate() == null){
+            return 0;
+        }
+        return getCreationDate().compareTo(b.getCreationDate());
     }
 }
