@@ -16,7 +16,7 @@ public class Bill implements Serializable, Comparable<Bill> {
     private float amount;
     private Timestamp creationDate;
     private Timestamp settlementDate;
-    private Step step;
+    private String step;
     private Vat vat;
 
     public Client getClient() {
@@ -67,11 +67,11 @@ public class Bill implements Serializable, Comparable<Bill> {
         this.settlementDate = settlementDate;
     }
 
-    public Step getStep() {
+    public String getStep() {
         return this.step;
     }
 
-    public void setStep(Step step) {
+    public void setStep(String step) {
         this.step = step;
     }
 

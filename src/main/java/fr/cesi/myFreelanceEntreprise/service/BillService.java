@@ -1,6 +1,7 @@
 package fr.cesi.myFreelanceEntreprise.service;
 
 import fr.cesi.myFreelanceEntreprise.beans.Bill;
+import fr.cesi.myFreelanceEntreprise.beans.Step;
 import fr.cesi.myFreelanceEntreprise.dao.BillDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,7 +17,7 @@ public class BillService {
 
     public List<Bill> selectAllJdv() {
         List<Bill> lb = billDAO.findAll();
-        lb.removeIf(b-> !b.getStep().equals("DONE"));
+        lb.removeIf(b-> !b.getStep().equals(Step.DONE.name()));
         Collections.sort(lb);
 
         return lb;
