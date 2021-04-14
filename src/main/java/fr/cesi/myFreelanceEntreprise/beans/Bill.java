@@ -3,6 +3,7 @@ package fr.cesi.myFreelanceEntreprise.beans;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 public class Bill implements Serializable, Comparable<Bill> {
@@ -14,10 +15,10 @@ public class Bill implements Serializable, Comparable<Bill> {
     @ManyToOne
     private Client client;
     private float amount;
-    private Timestamp creationDate;
-    private Timestamp settlementDate;
-    private Step step;
-    private Vat vat;
+    private Date creationDate;
+    private Date settlementDate;
+    private String step;
+    private float vat;
 
     public Client getClient() {
         return this.client;
@@ -51,35 +52,35 @@ public class Bill implements Serializable, Comparable<Bill> {
         this.amount = amount;
     }
 
-    public Timestamp getCreationDate() {
+    public Date getCreationDate() {
         return this.creationDate;
     }
 
-    public void setCreationDate(Timestamp creationDate) {
+    public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
     }
 
-    public Timestamp getSettlementDate() {
+    public Date getSettlementDate() {
         return this.settlementDate;
     }
 
-    public void setSettlementDate(Timestamp settlementDate) {
+    public void setSettlementDate(Date settlementDate) {
         this.settlementDate = settlementDate;
     }
 
-    public Step getStep() {
+    public String getStep() {
         return this.step;
     }
 
-    public void setStep(Step step) {
+    public void setStep(String step) {
         this.step = step;
     }
 
-    public Vat getVat() {
+    public float getVat() {
         return this.vat;
     }
 
-    public void setVat(Vat vat) {
+    public void setVat(float vat) {
         this.vat = vat;
     }
 
