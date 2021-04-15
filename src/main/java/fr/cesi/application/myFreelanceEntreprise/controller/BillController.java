@@ -23,13 +23,8 @@ public class BillController {
     @GetMapping("/factures")
     public List<Bill> listeFactures(){ return billService.selectAll(); }
 
-    @GetMapping("/createFacture")
-    public List<Client> ListeClient(){ return clientService.selectAll(); }
-
-    @GetMapping("/facture/{id}")
-    public Bill afficheFacture(@PathVariable int id) { return billService.selectOne(id); }
-
     //ToDo : Je peux créer une facture.
+    @PostMapping("/createFacture")
     public String ajoutFacture(@PathVariable int idClient, float amount, Date creationDate, float vat) {
         Bill b =  new Bill();
         Client billClient = new ClientService().selectOne(idClient);
@@ -44,6 +39,7 @@ public class BillController {
     }
 
     //ToDo : Modifier une facture
+    @PostMapping("/updateFacture")
     public String modifierFacture(@PathVariable int idFacture, int idClient, float amount, Date creationDate, float vat){
         Bill b = billService.selectOne(idFacture);
         Client billClient = new ClientService().selectOne(idClient);
@@ -57,6 +53,7 @@ public class BillController {
     }
 
     //ToDo : Payer une facture
+    @PostMapping("/payFacture")
     public String payerFacture(@PathVariable int idFacture, Date settlementDate){
         Bill b = billService.selectOne(idFacture);
         b.setSettlementDate(settlementDate);
@@ -67,6 +64,7 @@ public class BillController {
     }
 
     //ToDo : Abbandoner une facture
+    @PostMapping("/leaveFacture")
     public String abbandonnerFacure(@PathVariable int idFacture) {
         Bill b = billService.selectOne(idFacture);
         b.setStep("FAILED");
