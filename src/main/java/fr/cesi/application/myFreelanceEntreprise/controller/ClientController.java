@@ -2,10 +2,14 @@ package fr.cesi.application.myFreelanceEntreprise.controller;
 
 import fr.cesi.application.myFreelanceEntreprise.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 //Permet la consultation, l’ajout, la modification et la suppression d’un client.
-@Controller
+@RestController
+@CrossOrigin("*")
+@RequestMapping("/api")
 public class ClientController {
     @Autowired
     ClientService clientService;
