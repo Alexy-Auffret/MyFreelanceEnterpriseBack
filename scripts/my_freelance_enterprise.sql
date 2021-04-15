@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `bill` (
 -- Déchargement des données de la table `bill`
 --
 
-INSERT INTO `bill` (`id`, `amount`, `creation_date`, `settlement_date`, `client`, `step`, `tva`) VALUES
+INSERT INTO `bill` (`id`, `amount`, `creation_date`, `settlement_date`, `id_client`, `step`, `vat`) VALUES
 (1, 10000, '2021-01-08 13:01:41', '2021-04-01 08:02:01', 3, 'DONE', 20),
 (2, 1500, '2021-02-12 08:00:00', NULL, 1, 'WAITING', 20),
 (3, 2000, '2021-03-13 13:04:13', NULL, 2, 'WAITING', 20);
