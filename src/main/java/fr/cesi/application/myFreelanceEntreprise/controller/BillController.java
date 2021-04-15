@@ -17,13 +17,10 @@ import java.util.List;
 public class BillController {
     @Autowired
     BillService billService;
-    ClientService clientService;
 
-    //ToDo: afficher la liste des factures
     @GetMapping("/factures")
     public List<Bill> listeFactures(){ return billService.selectAll(); }
 
-    //ToDo : Je peux créer une facture.
     @PostMapping("/createFacture")
     public String ajoutFacture(@PathVariable int idClient, float amount, Date creationDate, float vat) {
         Bill b =  new Bill();
@@ -38,7 +35,6 @@ public class BillController {
         return "La facture du client " + b.getClient().getName() + " d'un montant de " + b.getAmount() + " € a bien été ajoutée.";
     }
 
-    //ToDo : Modifier une facture
     @PostMapping("/updateFacture")
     public String modifierFacture(@PathVariable int idFacture, int idClient, float amount, Date creationDate, float vat){
         Bill b = billService.selectOne(idFacture);
@@ -52,7 +48,6 @@ public class BillController {
         return "La facture du client " + b.getClient().getName() + " d'un montant de " + b.getAmount() + " € a bien été modifiée.";
     }
 
-    //ToDo : Payer une facture
     @PostMapping("/payFacture")
     public String payerFacture(@PathVariable int idFacture, Date settlementDate){
         Bill b = billService.selectOne(idFacture);
@@ -63,7 +58,6 @@ public class BillController {
         return "La facture du client " + b.getClient().getName() + " d'un montant de " + b.getAmount() + " € a bien été payée.";
     }
 
-    //ToDo : Abbandoner une facture
     @PostMapping("/leaveFacture")
     public String abbandonnerFacure(@PathVariable int idFacture) {
         Bill b = billService.selectOne(idFacture);
