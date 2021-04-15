@@ -1,4 +1,4 @@
-package fr.cesi.myFreelanceEntreprise.beans;
+package fr.cesi.application.myFreelanceEntreprise.beans;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

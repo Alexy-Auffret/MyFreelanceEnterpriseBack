@@ -1,9 +1,10 @@
-package fr.cesi.myFreelanceEntreprise.service;
+package fr.cesi.application.myFreelanceEntreprise.service;
 
-import fr.cesi.myFreelanceEntreprise.beans.Bill;
-import fr.cesi.myFreelanceEntreprise.beans.Step;
-import fr.cesi.myFreelanceEntreprise.dao.BillDAO;
+import fr.cesi.application.myFreelanceEntreprise.beans.Bill;
+import fr.cesi.application.myFreelanceEntreprise.beans.Step;
+import fr.cesi.application.myFreelanceEntreprise.dao.BillDAO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -12,7 +13,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
+@Service
 public class BillService {
     @Autowired
     BillDAO billDAO;

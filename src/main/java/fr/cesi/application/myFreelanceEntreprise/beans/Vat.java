@@ -1,4 +1,4 @@
-package fr.cesi.myFreelanceEntreprise.beans;
+package fr.cesi.application.myFreelanceEntreprise.beans;
 
 public enum Vat {
     TVA_5_5,

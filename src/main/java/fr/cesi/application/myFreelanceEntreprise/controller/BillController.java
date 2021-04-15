@@ -1,30 +1,30 @@
-package fr.cesi.myFreelanceEntreprise.controller;
+package fr.cesi.application.myFreelanceEntreprise.controller;
 
-import com.mysql.cj.xdevapi.JsonArray;
-import fr.cesi.myFreelanceEntreprise.beans.Bill;
-import fr.cesi.myFreelanceEntreprise.beans.Client;
-import fr.cesi.myFreelanceEntreprise.service.BillService;
-import fr.cesi.myFreelanceEntreprise.service.ClientService;
+import fr.cesi.application.myFreelanceEntreprise.beans.Bill;
+import fr.cesi.application.myFreelanceEntreprise.beans.Client;
+import fr.cesi.application.myFreelanceEntreprise.service.BillService;
+import fr.cesi.application.myFreelanceEntreprise.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
 
 //Permet la consultation, l’ajout ou la modification d’une facture.
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/api")
 public class BillController {
     @Autowired
     BillService billService;
+    ClientService clientService;
 
     //ToDo: afficher la liste des factures
     @GetMapping("/factures")
     public List<Bill> listeFactures(){ return billService.selectAll(); }
+
+    @GetMapping("/createFacture")
+    public List<Client> ListeClient(){ return clientService.selectAll(); }
 
     @GetMapping("/facture/{id}")
     public Bill afficheFacture(@PathVariable int id) { return billService.selectOne(id); }

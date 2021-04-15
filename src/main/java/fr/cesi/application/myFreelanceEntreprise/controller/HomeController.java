@@ -1,7 +1,7 @@
-package fr.cesi.myFreelanceEntreprise.controller;
+package fr.cesi.application.myFreelanceEntreprise.controller;
 
-import fr.cesi.myFreelanceEntreprise.beans.Bill;
-import fr.cesi.myFreelanceEntreprise.service.BillService;
+import fr.cesi.application.myFreelanceEntreprise.beans.Bill;
+import fr.cesi.application.myFreelanceEntreprise.service.BillService;
 
 import java.util.List;
 

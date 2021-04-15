@@ -1,6 +1,6 @@
-package fr.cesi.myFreelanceEntreprise.controller;
+package fr.cesi.application.myFreelanceEntreprise.controller;
 
-import fr.cesi.myFreelanceEntreprise.service.ClientService;
+import fr.cesi.application.myFreelanceEntreprise.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 

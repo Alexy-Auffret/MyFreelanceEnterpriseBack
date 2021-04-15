@@ -1,4 +1,4 @@
-package fr.cesi.myFreelanceEntreprise.service;
+package fr.cesi.application.myFreelanceEntreprise.service;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

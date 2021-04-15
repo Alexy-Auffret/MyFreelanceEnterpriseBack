@@ -1,8 +1,7 @@
-package fr.cesi.myFreelanceEntreprise.beans;
+package fr.cesi.application.myFreelanceEntreprise.beans;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity

@@ -1,4 +1,4 @@
-package fr.cesi.myFreelanceEntreprise.beans;
+package fr.cesi.application.myFreelanceEntreprise.beans;
 
 public enum Step {
     CREATED, /* Facture créée en attente d'action */
