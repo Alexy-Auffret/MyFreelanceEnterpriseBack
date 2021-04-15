@@ -1,12 +1,10 @@
 package fr.cesi.myFreelanceEntreprise.controller;
 
-import com.mysql.cj.xdevapi.JsonArray;
 import fr.cesi.myFreelanceEntreprise.beans.Bill;
 import fr.cesi.myFreelanceEntreprise.beans.Client;
 import fr.cesi.myFreelanceEntreprise.service.BillService;
 import fr.cesi.myFreelanceEntreprise.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

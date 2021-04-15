@@ -2,12 +2,13 @@ package fr.cesi.myFreelanceEntreprise.beans;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
 public class Bill implements Serializable, Comparable<Bill> {
 
+    private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
