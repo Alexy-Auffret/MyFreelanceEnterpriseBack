@@ -20,4 +20,45 @@ public class ClientService {
     }
 
     public void save(Client c){ clientDAO.save(c);}
+
+    public void addClient(String name, String adresse, String phoneNumber, boolean active) {
+        Client client = new Client();
+        client.setName(name);
+        client.setAddress(adresse);
+        client.setPhoneNumber(phoneNumber);
+        client.setActive(active);
+
+        save(client);
+    }
+
+    public void updateClient(int id, String name, String adresse, String phoneNumber, boolean active) {
+        Optional<Client> client = clientDAO.findById(id);
+
+        if (client.isPresent()) {
+            client.get().setName(name);
+            client.get().setAddress(adresse);
+            client.get().setPhoneNumber(phoneNumber);
+            client.get().setActive(active);
+            
+            save(client.get());
+        }
+        else
+            addClient(name, adresse, phoneNumber, active);
+    }
+
+    public boolean archiveClient(int id) {
+        Optional<Client> client = clientDAO.findById(id);
+
+        if (client.isPresent()) {
+            client.get().setActive(false);
+
+            save(client.get());
+
+            return true;
+        }
+        else
+            return false;
+    }
+
+
 }

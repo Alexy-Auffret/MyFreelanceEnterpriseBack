@@ -41,4 +41,12 @@ public class ClientController {
         clientService.save(c);
         return "Le client " + c.getName() + " a bien été modifié.";
     }
+
+    @PostMapping("/archiveClient") 
+    public String archiveClient(@PathVariable int id) {
+        if (clientService.archiveClient(id))
+            return "Le client a bien été archivé.";
+        else
+            return "Le client n'a pas été trouvé.";
+    }
 }
