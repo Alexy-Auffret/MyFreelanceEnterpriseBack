@@ -18,11 +18,17 @@ public class BillService {
     @Autowired
     BillDAO billDAO;
 
+    @Autowired
+    private ClientService service;
+
     public List<Bill> selectAll() { return billDAO.findAll();}
 
     public List<Bill> selectAllJdv() {
         List<Bill> lb = billDAO.findAll();
+
         lb.removeIf(b-> !b.getStep().equals(Step.DONE.name()));
+
+        lb.forEach(bill -> bill.setClient(service.selectOne(bill.getIdClient())));
         Collections.sort(lb);
 
         return lb;
@@ -30,21 +36,28 @@ public class BillService {
 
     public Bill selectOne(int id) {
         Optional<Bill> b = billDAO.findById(id);
+
+        if (b.isPresent())
+            b.get().setClient(service.selectOne(b.get().getIdClient()));
+
         return b.orElse(null);
     }
 
     public void save(Bill b) { billDAO.save(b);}
 
-    public List<Bill> getMonthBills() {
-        LocalDate firstDayInMonth = LocalDate.now().withDayOfMonth(1);
+    public List<Bill> getYearBills() {
+        LocalDate firstDayInYear = LocalDate.now().withDayOfMonth(1).withMonth(1);
 
         List<Bill> bills = billDAO.findAll();
 
-        return bills.stream().filter(x -> x.getCreationDate().after(Date.from(firstDayInMonth.atStartOfDay(ZoneId.systemDefault()).toInstant()))).collect(Collectors.toList());
+        
+        bills.forEach(bill -> bill.setClient(service.selectOne(bill.getIdClient())));
+
+        return bills.stream().filter(x -> x.getCreationDate().after(Date.from(firstDayInYear.atStartOfDay(ZoneId.systemDefault()).toInstant()))).collect(Collectors.toList());
     }
 
     public float getRevenues() {
-        List<Bill> bills = getMonthBills();
+        List<Bill> bills = getYearBills();
 
         float revenues = 0;
 
