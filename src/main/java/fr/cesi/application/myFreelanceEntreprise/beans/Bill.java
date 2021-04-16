@@ -1,5 +1,7 @@
 package fr.cesi.application.myFreelanceEntreprise.beans;
 
+import fr.cesi.application.myFreelanceEntreprise.service.ClientService;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -22,7 +24,8 @@ public class Bill implements Serializable, Comparable<Bill> {
     private float vat;
 
     public Client getClient() {
-        return this.client;
+        ClientService cl = new ClientService();
+        return cl.selectOne(this.idClient);
     }
 
     public void setClient(Client client) {
