@@ -1,5 +1,6 @@
 package fr.cesi.application.myFreelanceEntreprise.beans;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import fr.cesi.application.myFreelanceEntreprise.service.ClientService;
 
 import javax.persistence.*;
@@ -12,11 +13,22 @@ public class Bill implements Serializable, Comparable<Bill> {
     private static final long serialVersionUID = 1L;
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int idClient;
     @ManyToOne
     private Client client;
+
+    public int getClient_id() {
+        return client_id;
+    }
+
+    public void setClient_id(int client_id) {
+        this.client_id = client_id;
+    }
+
+    @Transient
+    @JsonProperty("idClient")
+    private int client_id;
     private float amount;
     private Date creationDate;
     private Date settlementDate;
@@ -24,8 +36,9 @@ public class Bill implements Serializable, Comparable<Bill> {
     private float vat;
 
     public Client getClient() {
-        ClientService cl = new ClientService();
-        return cl.selectOne(this.idClient);
+        /*ClientService cl = new ClientService();
+        return cl.selectOne(this.idClient);*/
+        return this.client;
     }
 
     public void setClient(Client client) {
@@ -40,13 +53,8 @@ public class Bill implements Serializable, Comparable<Bill> {
         this.id = id;
     }
 
-    public int getIdClient() {
-        return this.idClient;
-    }
 
-    public void setIdClient(int idClient) {
-        this.idClient = idClient;
-    }
+
 
     public float getAmount() {
         return this.amount;

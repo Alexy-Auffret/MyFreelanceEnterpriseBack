@@ -17,7 +17,7 @@ public class ClientController {
     ClientService clientService;
 
     @GetMapping("/clients")
-    public List<Client> listeFactures(){ return clientService.selectAll(); }
+    public List<Client> listeClients(){ return clientService.selectAll(); }
 
     @PostMapping("/createClient")
     public String ajouterClient(@PathVariable String name, String adresse, String phoneNumber, boolean active){

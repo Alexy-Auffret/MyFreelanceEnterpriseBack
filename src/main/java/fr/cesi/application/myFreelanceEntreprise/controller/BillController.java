@@ -7,6 +7,9 @@ import fr.cesi.application.myFreelanceEntreprise.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -17,35 +20,40 @@ import java.util.List;
 public class BillController {
     @Autowired
     BillService billService;
+    @Autowired
+    ClientService clientService;
 
     @GetMapping("/factures")
     public List<Bill> listeFactures(){ return billService.selectAll(); }
 
     @PostMapping("/createFacture")
-    public String ajoutFacture(@PathVariable int idClient, @PathVariable float amount, @PathVariable Date creationDate, @PathVariable float vat) {
+    public String ajoutFacture(@RequestBody Bill billToCreate) {
+
+        /*Date dateCrea=Date.from(LocalDate.parse(billToCreate.getCreationDate(), DateTimeFormatter.ofPattern("dd/MM/yyyy")).atStartOfDay(ZoneId.systemDefault()).toInstant());*/
         Bill b =  new Bill();
-        Client billClient = new ClientService().selectOne(idClient);
+        Client billClient = clientService.selectById(billToCreate.getClient_id());
         b.setClient(billClient);
-        b.setAmount(amount);
-        b.setCreationDate(creationDate);
+        b.setAmount(billToCreate.getAmount());
+        b.setCreationDate(billToCreate.getCreationDate());
         b.setStep("WAITING");
-        b.setVat(vat);
+        b.setVat(billToCreate.getVat());
         billService.save(b);
 
         return "La facture du client " + b.getClient().getName() + " d'un montant de " + b.getAmount() + " € a bien été ajoutée.";
     }
 
     @PostMapping("/updateFacture")
-    public String modifierFacture(@PathVariable int idFacture, @PathVariable int idClient, @PathVariable float amount, @PathVariable Date creationDate, @PathVariable float vat){
-        Bill b = billService.selectOne(idFacture);
-        Client billClient = new ClientService().selectOne(idClient);
+    public String modifierFacture(@RequestBody Bill billToCreate){
+        /*Bill b = billService.selectOne(billToCreate.);
+        Client billClient = new ClientService().selectById(billToCreate.getClient_id());
         b.setClient(billClient);
-        b.setAmount(amount);
-        b.setCreationDate(creationDate);
-        b.setVat(vat);
-        billService.save(b);
+        b.setAmount(billToCreate.getAmount());
+        b.setCreationDate(billToCreate.getCreationDate());
+        b.setVat(billToCreate.getVat());*/
+        billToCreate.setClient(clientService.selectById(billToCreate.getClient_id()));
+        billService.save(billToCreate);
 
-        return "La facture du client " + b.getClient().getName() + " d'un montant de " + b.getAmount() + " € a bien été modifiée.";
+        return "La facture du client " + billToCreate.getClient().getName() + " d'un montant de " + billToCreate.getAmount() + " € a bien été modifiée.";
     }
 
     @PostMapping("/payFacture")

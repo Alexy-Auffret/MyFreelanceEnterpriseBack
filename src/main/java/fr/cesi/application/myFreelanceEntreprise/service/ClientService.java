@@ -45,6 +45,9 @@ public class ClientService {
         else
             addClient(name, adresse, phoneNumber, active);
     }
+    public Client selectById(int id){
+        return clientDAO.findById(id).orElse(null);
+    }
 
     public boolean archiveClient(int id) {
         Optional<Client> client = clientDAO.findById(id);
