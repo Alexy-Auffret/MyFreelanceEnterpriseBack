@@ -20,5 +20,4 @@ public class JdvController {
     @GetMapping("/jdv")
     public List<Bill> listeFacturesPayees() { return billService.selectAllJdv(); }
 
-    
 }

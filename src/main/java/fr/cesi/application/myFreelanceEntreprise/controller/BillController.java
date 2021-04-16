@@ -23,7 +23,7 @@ public class BillController {
     @GetMapping("/factures")
     public List<Bill> listeFactures(){ return billService.selectAll(); }
 
-    @GetMapping("/createFacture")
+    @PostMapping("/createFacture")
     public List<Client> ListeClient(){ return clientService.selectAll(); }
 
     @GetMapping("/facture/{id}")
