@@ -22,7 +22,7 @@ public class BillController {
     public List<Bill> listeFactures(){ return billService.selectAll(); }
 
     @PostMapping("/createFacture")
-    public String ajoutFacture(@PathVariable int idClient, float amount, Date creationDate, float vat) {
+    public String ajoutFacture(@PathVariable int idClient, @PathVariable float amount, @PathVariable Date creationDate, @PathVariable float vat) {
         Bill b =  new Bill();
         Client billClient = new ClientService().selectOne(idClient);
         b.setClient(billClient);
@@ -36,7 +36,7 @@ public class BillController {
     }
 
     @PostMapping("/updateFacture")
-    public String modifierFacture(@PathVariable int idFacture, int idClient, float amount, Date creationDate, float vat){
+    public String modifierFacture(@PathVariable int idFacture, @PathVariable int idClient, @PathVariable float amount, @PathVariable Date creationDate, @PathVariable float vat){
         Bill b = billService.selectOne(idFacture);
         Client billClient = new ClientService().selectOne(idClient);
         b.setClient(billClient);
@@ -49,7 +49,7 @@ public class BillController {
     }
 
     @PostMapping("/payFacture")
-    public String payerFacture(@PathVariable int idFacture, Date settlementDate){
+    public String payerFacture(@PathVariable int idFacture, @PathVariable Date settlementDate){
         Bill b = billService.selectOne(idFacture);
         b.setSettlementDate(settlementDate);
         b.setStep("DONE");
