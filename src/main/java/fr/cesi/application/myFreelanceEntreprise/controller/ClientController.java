@@ -20,26 +20,21 @@ public class ClientController {
     public List<Client> listeClients(){ return clientService.selectAll(); }
 
     @PostMapping("/createClient")
-    public String ajouterClient(@PathVariable String name, String adresse, String phoneNumber, boolean active){
+    public String ajouterClient(@RequestBody Client clientToCreate){
         Client c = new Client();
-        c.setName(name);
-        c.setAddress(adresse);
-        c.setPhoneNumber(phoneNumber);
-        c.setActive(active);
+        c.setName(clientToCreate.getName());
+        c.setAddress(clientToCreate.getAddress());
+        c.setPhoneNumber(clientToCreate.getPhoneNumber());
+        c.setActive(clientToCreate.getActive());
         clientService.save(c);
 
         return "Le client " + c.getName() + " a bien été ajouté.";
     }
 
     @PostMapping("/updateClient")
-    public String modifierClient(@PathVariable int id, String name, String adresse, String phoneNumber, boolean active){
-        Client c = clientService.selectOne(id);
-        c.setName(name);
-        c.setAddress(adresse);
-        c.setPhoneNumber(phoneNumber);
-        c.setActive(active);
-        clientService.save(c);
-        return "Le client " + c.getName() + " a bien été modifié.";
+    public String modifierClient(@RequestBody Client clientToUpdate){
+        clientService.save(clientToUpdate);
+        return "Le client " + clientToUpdate.getName() + " a bien été modifié.";
     }
 
     @PostMapping("/archiveClient") 
