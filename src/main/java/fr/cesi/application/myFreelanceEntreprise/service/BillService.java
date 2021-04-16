@@ -28,7 +28,7 @@ public class BillService {
 
         lb.removeIf(b-> !b.getStep().equals(Step.DONE.name()));
 
-        lb.forEach(bill -> bill.setClient(service.selectOne(bill.getIdClient())));
+        lb.forEach(bill -> bill.setClient(service.selectOne(bill.getClient_id())));
         Collections.sort(lb);
 
         return lb;
@@ -38,7 +38,7 @@ public class BillService {
         Optional<Bill> b = billDAO.findById(id);
 
         if (b.isPresent())
-            b.get().setClient(service.selectOne(b.get().getIdClient()));
+            b.get().setClient(service.selectOne(b.get().getClient_id()));
 
         return b.orElse(null);
     }
@@ -51,7 +51,7 @@ public class BillService {
         List<Bill> bills = billDAO.findAll();
 
         
-        bills.forEach(bill -> bill.setClient(service.selectOne(bill.getIdClient())));
+        bills.forEach(bill -> bill.setClient(service.selectOne(bill.getClient_id())));
 
         return bills.stream().filter(x -> x.getCreationDate().after(Date.from(firstDayInYear.atStartOfDay(ZoneId.systemDefault()).toInstant()))).collect(Collectors.toList());
     }
